@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 4 of 16 completed**
+**Current Progress: Chapter 5 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -35,9 +35,16 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ Dashboard, Invoices, and Customers pages structure
 - ✅ Heroicons integration for UI icons
 
+#### Chapter 5: Navigating Between Pages
+
+- ✅ Active navigation states with conditional styling
+- ✅ Client-side routing with Next.js Link component
+- ✅ usePathname hook implementation for route detection
+- ✅ Dynamic styling with clsx for active/inactive states
+- ✅ Enhanced user experience with visual feedback
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 5: Navigating Between Pages
 - Chapter 6: Setting Up Your Database
 - Chapter 7: Fetching Data
 - Chapter 8: Static and Dynamic Rendering
@@ -59,7 +66,8 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **CSS Modules**: Scoped styling with CSS modules
 - **Modern Styling**: Tailwind CSS utilities and custom styles
 - **Dashboard Layout**: Sidebar navigation with responsive layout
-- **Navigation**: Multi-page navigation structure (Dashboard, Invoices, Customers)
+- **Active Navigation**: Dynamic navigation states with visual feedback
+- **Client-side Routing**: Fast navigation between pages using Next.js Link
 - **UI Icons**: Heroicons integration for consistent iconography
 
 ## 📁 Project Structure
@@ -126,9 +134,10 @@ pnpm dev
 - TypeScript strict mode enabled
 - Tailwind forms plugin included for better form styling
 - CSS optimizations for number inputs (removing spinners)
+- Active navigation implemented with usePathname and clsx
 
 ---
 
-**Next Steps**: Continue with Chapter 5 to implement active navigation states and client-side routing.
+**Next Steps**: Continue with Chapter 6 to set up the database and start working with data.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
