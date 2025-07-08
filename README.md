@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 3 of 16 completed**
+**Current Progress: Chapter 4 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -27,9 +27,16 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ Responsive images for desktop and mobile
 - ✅ Performance improvements
 
+#### Chapter 4: Creating Layouts and Pages
+
+- ✅ Dashboard layout implementation with sidebar navigation
+- ✅ Nested layouts using Next.js App Router
+- ✅ Navigation component with responsive design
+- ✅ Dashboard, Invoices, and Customers pages structure
+- ✅ Heroicons integration for UI icons
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 4: Creating Layouts and Pages
 - Chapter 5: Navigating Between Pages
 - Chapter 6: Setting Up Your Database
 - Chapter 7: Fetching Data
@@ -51,13 +58,26 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **Component Structure**: Modular React components (AcmeLogo)
 - **CSS Modules**: Scoped styling with CSS modules
 - **Modern Styling**: Tailwind CSS utilities and custom styles
+- **Dashboard Layout**: Sidebar navigation with responsive layout
+- **Navigation**: Multi-page navigation structure (Dashboard, Invoices, Customers)
+- **UI Icons**: Heroicons integration for consistent iconography
 
 ## 📁 Project Structure
 
 ```
 nextjs-dashboard-course/
 ├── app/
+│   ├── dashboard/
+│   │   ├── layout.tsx        # Dashboard layout wrapper
+│   │   ├── page.tsx          # Dashboard home page
+│   │   ├── invoices/
+│   │   │   └── page.tsx      # Invoices page
+│   │   └── customers/
+│   │       └── page.tsx      # Customers page
 │   ├── ui/
+│   │   ├── dashboard/
+│   │   │   ├── sidenav.tsx   # Sidebar navigation component
+│   │   │   └── nav-links.tsx # Navigation links component
 │   │   ├── fonts.ts          # Google Fonts configuration
 │   │   ├── global.css        # Global styles with Tailwind
 │   │   ├── home.module.css   # CSS Modules for home page
@@ -109,6 +129,6 @@ pnpm dev
 
 ---
 
-**Next Steps**: Continue with Chapter 4 to implement layouts and navigation structure.
+**Next Steps**: Continue with Chapter 5 to implement active navigation states and client-side routing.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
