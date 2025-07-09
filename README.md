@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 11 of 16 completed**
+**Current Progress: Chapter 12 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -101,9 +101,25 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ ILIKE database queries for case-insensitive search
 - ✅ Responsive pagination controls with arrow navigation
 
+#### Chapter 12: Mutating Data
+
+- ✅ Server Actions implementation for secure data mutations
+- ✅ Create Invoice functionality with form validation
+- ✅ Update Invoice functionality with pre-populated forms
+- ✅ Delete Invoice functionality with confirmation
+- ✅ Zod schema validation for form data
+- ✅ Database mutations (INSERT, UPDATE, DELETE) with PostgreSQL
+- ✅ Form handling with FormData API
+- ✅ Automatic cache revalidation with `revalidatePath`
+- ✅ Programmatic navigation with `redirect`
+- ✅ Error handling for database operations
+- ✅ Action buttons for invoice management (Create, Edit, Delete)
+- ✅ Currency conversion (dollars to cents for database storage)
+- ✅ Data binding for edit forms with existing invoice data
+- ✅ Optimistic UI updates with server-side validation
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 12: Mutating Data
 - Chapter 13: Handling Errors
 - Chapter 14: Improving Accessibility
 - Chapter 15: Adding Authentication
@@ -133,6 +149,11 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **Search & Filter**: Real-time search with debounced input across multiple fields
 - **Pagination**: URL-based pagination with navigation controls
 - **State Management**: URL-based state for search and pagination persistence
+- **Invoice Management**: Full CRUD operations for invoices
+- **Data Validation**: Zod schema validation for form inputs
+- **Server Actions**: Secure server-side data mutations
+- **Form Handling**: Advanced form processing with FormData API
+- **Cache Management**: Automatic cache revalidation after mutations
 
 ## 📁 Project Structure
 
@@ -145,10 +166,16 @@ nextjs-dashboard-course/
 │   │   │   └── loading.tsx   # Route-level loading page
 │   │   ├── layout.tsx        # Dashboard layout wrapper with PPR
 │   │   ├── invoices/
-│   │   │   └── page.tsx      # Invoices page with search & pagination
+│   │   │   ├── page.tsx      # Invoices page with search & pagination
+│   │   │   ├── create/
+│   │   │   │   └── page.tsx  # Create invoice page
+│   │   │   └── [id]/
+│   │   │       └── edit/
+│   │   │           └── page.tsx # Edit invoice page
 │   │   └── customers/
 │   │       └── page.tsx      # Customers page
 │   ├── lib/
+│   │   ├── actions.ts        # Server actions for data mutations
 │   │   ├── data.ts           # Database queries with search & pagination
 │   │   ├── definitions.ts    # TypeScript type definitions
 │   │   ├── utils.ts          # Utility functions including pagination
@@ -165,11 +192,15 @@ nextjs-dashboard-course/
 │   │   │   ├── revenue-chart.tsx # Revenue visualization chart
 │   │   │   └── latest-invoices.tsx # Recent invoices component
 │   │   ├── invoices/
-│   │   │   ├── pagination.tsx # Pagination component with navigation
-│   │   │   ├── table.tsx     # Invoices table component
-│   │   │   └── buttons.tsx   # Action buttons for invoices
+│   │   │   ├── create-form.tsx # Create invoice form component
+│   │   │   ├── edit-form.tsx   # Edit invoice form component
+│   │   │   ├── buttons.tsx     # Action buttons (Create, Edit, Delete)
+│   │   │   ├── breadcrumbs.tsx # Navigation breadcrumbs
+│   │   │   ├── pagination.tsx  # Pagination component with navigation
+│   │   │   └── table.tsx       # Invoices table component
 │   │   ├── search.tsx        # Search component with debounced input
 │   │   ├── skeletons.tsx     # Loading skeleton components
+│   │   ├── button.tsx        # Reusable button component
 │   │   ├── fonts.ts          # Google Fonts configuration
 │   │   ├── global.css        # Global styles with Tailwind
 │   │   ├── home.module.css   # CSS Modules for home page
@@ -195,10 +226,12 @@ nextjs-dashboard-course/
 - **Authentication**: NextAuth.js (configured)
 - **Icons**: Heroicons
 - **Security**: bcrypt for password hashing
+- **Validation**: Zod for schema validation
 - **UI/UX**: React Suspense for streaming
 - **Loading States**: Custom skeleton components
 - **Search**: use-debounce for optimized search input
 - **Routing**: Next.js navigation hooks for URL state management
+- **Data Mutations**: Server Actions with form handling
 
 ## 🗄️ Database Schema
 
@@ -217,6 +250,8 @@ nextjs-dashboard-course/
 - Optimized queries for dashboard performance
 - **Search Support**: ILIKE queries for case-insensitive search across multiple fields
 - **Pagination Support**: LIMIT and OFFSET for efficient data retrieval
+- **CRUD Operations**: Full Create, Read, Update, Delete support for invoices
+- **Data Integrity**: Proper foreign key constraints and validation
 
 ## 🚀 Getting Started
 
@@ -283,107 +318,131 @@ pnpm dev
 - **Pagination**: Navigate through large datasets with configurable page sizes
 - **Filtering**: Advanced filtering capabilities with URL persistence
 - **Responsive Table**: Mobile-friendly invoice display with status indicators
+- **CRUD Operations**: Create, Edit, and Delete invoices with full validation
+- **Action Buttons**: Intuitive interface for invoice management
 
-## 🔍 Search & Pagination Features
+## 🔧 Invoice CRUD Operations
 
-### Search Component
+### Create Invoice
 
-- **Debounced Input**: 300ms delay to prevent excessive API calls
-- **Multi-field Search**: Search across customer name, email, invoice amount, date, and status
-- **URL Integration**: Search terms persist in URL for bookmarking and sharing
-- **Real-time Results**: Instant feedback as user types
-- **Case-insensitive**: Uses ILIKE for flexible search matching
+- **Form Validation**: Zod schema validation for all form inputs
+- **Customer Selection**: Dropdown with all available customers
+- **Amount Input**: Numeric input with proper formatting
+- **Status Selection**: Radio buttons for pending/paid status
+- **Server Action**: Secure server-side form processing
+- **Data Conversion**: Automatic conversion from dollars to cents
+- **Cache Revalidation**: Automatic UI updates after creation
+- **Navigation**: Redirect to invoices list after successful creation
 
-### Pagination Component
+### Edit Invoice
 
-- **URL-based Navigation**: Page state maintained in URL parameters
-- **Navigation Controls**: Previous/Next buttons with disabled states
-- **Page Numbers**: Clickable page numbers with current page highlighting
-- **Responsive Design**: Adapts to different screen sizes
-- **Items per Page**: Configurable page size (currently 6 items per page)
-- **Total Pages Calculation**: Dynamic calculation based on filtered results
+- **Pre-populated Form**: Forms automatically filled with existing invoice data
+- **Dynamic Routing**: URL-based invoice selection with `[id]` parameter
+- **Data Binding**: Proper form field binding with `defaultValue`
+- **Validation**: Same validation rules as create form
+- **Update Logic**: Efficient database updates with prepared statements
+- **Error Handling**: Comprehensive error handling for edge cases
 
-## 🔄 Streaming & Loading States
+### Delete Invoice
 
-### Route-level Loading
+- **Confirmation UI**: Clear delete button with proper styling
+- **Server Action**: Secure deletion with proper authorization
+- **Cascade Handling**: Proper handling of related data
+- **Optimistic Updates**: Immediate UI feedback with server validation
+- **Error Recovery**: Graceful handling of deletion errors
 
-- **Dashboard Loading**: Full page skeleton (`loading.tsx`) for initial page load
-- **Fallback UI**: Comprehensive skeleton matching the dashboard layout
+## 🛡️ Data Validation & Security
 
-### Component-level Streaming
+### Zod Schema Validation
 
-- **Cards Section**: `CardsSkeleton` with shimmer animation for metrics loading
-- **Revenue Chart**: `RevenueChartSkeleton` with placeholder chart structure
-- **Latest Invoices**: `LatestInvoicesSkeleton` with invoice list placeholders
-- **Invoices Table**: `InvoicesTableSkeleton` for search results loading
+- **Type Safety**: TypeScript integration with runtime validation
+- **Field Validation**: Customer ID, amount, and status validation
+- **Data Coercion**: Automatic string to number conversion for amounts
+- **Error Messages**: Clear validation error messages
+- **Server-side Validation**: All validation performed on server
 
-### Loading Features
+### Security Features
 
-- **Shimmer Animation**: CSS-based loading animation for skeleton components
-- **Independent Loading**: Each dashboard section loads independently
-- **Progressive Enhancement**: Content appears as data becomes available
-- **Responsive Skeletons**: Loading states adapt to different screen sizes
+- **Server Actions**: All mutations performed server-side
+- **Input Sanitization**: Proper sanitization of all form inputs
+- **SQL Injection Prevention**: Parameterized queries with postgres library
+- **CSRF Protection**: Built-in CSRF protection with Next.js
+- **Data Validation**: Comprehensive validation before database operations
+
+## 🔄 Server Actions Implementation
+
+### Action Functions
+
+- **createInvoice**: Handle new invoice creation with validation
+- **updateInvoice**: Handle invoice updates with ID binding
+- **deleteInvoice**: Handle invoice deletion with confirmation
+- **Form Binding**: Automatic form data extraction and processing
+- **Error Handling**: Comprehensive error handling with user feedback
+
+### Performance Optimizations
+
+- **Prepared Statements**: Efficient database queries with parameter binding
+- **Cache Revalidation**: Selective cache invalidation with `revalidatePath`
+- **Optimistic Updates**: Immediate UI updates with server validation
+- **Batch Operations**: Efficient handling of multiple operations
+
+## 🎨 UI/UX Enhancements
+
+### Form Components
+
+- **Responsive Design**: Mobile-first form layouts
+- **Accessibility**: Proper labels and ARIA attributes
+- **Visual Feedback**: Loading states and success/error messages
+- **Intuitive Navigation**: Clear breadcrumbs and navigation paths
+- **Consistent Styling**: Uniform styling across all forms
+
+### Action Buttons
+
+- **Icon Integration**: Heroicons for consistent button styling
+- **Hover States**: Interactive feedback on button interactions
+- **Disabled States**: Proper handling of disabled button states
+- **Loading States**: Visual feedback during form submission
 
 ## 🚀 Performance Optimizations
 
-### Partial Prerendering (PPR)
+### Data Mutations
 
-- **Incremental PPR**: Enabled with `ppr: "incremental"` configuration
-- **Static Shell**: Fast initial page load with static content
-- **Dynamic Streaming**: Database-driven content streams in progressively
-- **Hybrid Rendering**: Combines benefits of static and dynamic rendering
-- **Optimal Performance**: Reduced Time to First Byte (TTFB) and improved user experience
+- **Server Actions**: Efficient server-side processing
+- **Cache Management**: Intelligent cache invalidation
+- **Optimistic Updates**: Immediate UI feedback
+- **Error Recovery**: Graceful handling of failed operations
 
-### Search & Pagination Optimizations
+### Form Performance
 
-- **Debounced Search**: Prevents excessive database queries during typing
-- **URL State Management**: Eliminates need for client-side state management
-- **Efficient Queries**: LIMIT and OFFSET for optimal database performance
-- **Parallel Loading**: Search results and pagination data load independently
-- **Cached Results**: URL-based caching for better performance
+- **Debounced Validation**: Efficient form validation
+- **Lazy Loading**: Progressive form component loading
+- **Memory Management**: Proper cleanup of form state
+- **Network Efficiency**: Minimal data transfer for mutations
 
 ## 📝 Development Notes
 
-- Using `--turbopack` flag for faster development builds
-- TypeScript strict mode enabled
-- Tailwind forms plugin included for better form styling
-- CSS optimizations for number inputs (removing spinners)
-- Active navigation implemented with usePathname and clsx
-- Server-side data fetching with proper error handling
-- Parallel data fetching for improved performance
-- Environment variables for secure database configuration
-- React Suspense boundaries for optimal streaming
-- Skeleton components with shimmer effects for polished loading states
-- **PPR Configuration**: Experimental partial prerendering for hybrid rendering
-- **Search Implementation**: Debounced search with URL state management
-- **Pagination Logic**: URL-based pagination with dynamic page generation
-
-## 🔧 API Endpoints
-
-- `/seed`: Database seeding endpoint for initial data population
-- `/query`: Testing endpoint for database queries
+- Server Actions with `"use server"` directive for secure mutations
+- Zod schema validation for type-safe form processing
+- FormData API for efficient form handling
+- Automatic cache revalidation with `revalidatePath`
+- Programmatic navigation with `redirect`
+- Currency conversion handling (dollars to cents)
+- Proper error handling and user feedback
+- TypeScript integration with comprehensive type definitions
+- Responsive form layouts with Tailwind CSS
+- Accessibility best practices in form design
 
 ## 🎯 Performance Metrics
 
-- **Streaming**: Progressive page rendering with React Suspense
-- **Parallel Loading**: Independent component loading for faster perceived performance
-- **Skeleton UI**: Immediate feedback while data loads
-- **Partial Prerendering**: Hybrid static/dynamic rendering for optimal performance
-- **Debounced Search**: Optimized search with 300ms delay
-- **Efficient Pagination**: Database-level pagination with LIMIT/OFFSET
-- **URL State Management**: Persistent state without client-side storage
-
-## 🎨 UI/UX Improvements
-
-- **Search Experience**: Real-time search with visual feedback
-- **Pagination Controls**: Intuitive navigation with disabled states
-- **Responsive Design**: Mobile-first approach for all components
-- **Loading States**: Comprehensive skeleton components for smooth transitions
-- **Visual Feedback**: Clear indication of active pages and search states
-- **Accessibility**: Proper ARIA labels and keyboard navigation support
+- **Server Actions**: Secure and efficient data mutations
+- **Form Validation**: Real-time validation with Zod schemas
+- **Cache Efficiency**: Automatic cache revalidation after mutations
+- **Database Performance**: Optimized queries with proper indexing
+- **UI Responsiveness**: Immediate feedback with optimistic updates
+- **Error Handling**: Comprehensive error recovery mechanisms
 
 ---
 
-**Next Steps**: Continue with Chapter 12 to implement data mutations (Create, Update, Delete operations) for invoices.
+**Next Steps**: Continue with Chapter 13 to implement comprehensive error handling and user feedback systems.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
