@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 7 of 16 completed**
+**Current Progress: Chapter 9 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -62,10 +62,25 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ Parallel data fetching for improved performance
 - ✅ Error handling and data validation
 
+#### Chapter 8: Static and Dynamic Rendering
+
+- ✅ Understanding static vs dynamic rendering concepts
+- ✅ Server Components implementation for data fetching
+- ✅ Optimized rendering strategies for dashboard components
+- ✅ Performance benefits of static rendering where applicable
+- ✅ Dynamic rendering for real-time data components
+
+#### Chapter 9: Streaming
+
+- ✅ React Suspense implementation for component streaming
+- ✅ Loading skeleton components for improved UX
+- ✅ Granular loading states for individual dashboard sections
+- ✅ Parallel component loading with independent suspense boundaries
+- ✅ Route-level loading page implementation
+- ✅ Progressive page rendering for better perceived performance
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 8: Static and Dynamic Rendering
-- Chapter 9: Streaming
 - Chapter 10: Partial Prerendering
 - Chapter 11: Adding Search and Pagination
 - Chapter 12: Mutating Data
@@ -91,6 +106,9 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **Real-time Dashboard**: Live data fetching and display
 - **Customer Management**: Latest invoices with customer profiles
 - **Performance Optimized**: Parallel data fetching and efficient queries
+- **Streaming UI**: React Suspense for progressive loading
+- **Loading States**: Comprehensive skeleton components for better UX
+- **Component-level Loading**: Independent loading states for dashboard sections
 
 ## 📁 Project Structure
 
@@ -98,8 +116,10 @@ This is a dashboard application built following the [Next.js App Router Course](
 nextjs-dashboard-course/
 ├── app/
 │   ├── dashboard/
+│   │   ├── (overview)/
+│   │   │   ├── page.tsx      # Dashboard home with streaming
+│   │   │   └── loading.tsx   # Route-level loading page
 │   │   ├── layout.tsx        # Dashboard layout wrapper
-│   │   ├── page.tsx          # Dashboard home page with data
 │   │   ├── invoices/
 │   │   │   └── page.tsx      # Invoices page
 │   │   └── customers/
@@ -120,6 +140,7 @@ nextjs-dashboard-course/
 │   │   │   ├── cards.tsx     # Dashboard cards with metrics
 │   │   │   ├── revenue-chart.tsx # Revenue visualization chart
 │   │   │   └── latest-invoices.tsx # Recent invoices component
+│   │   ├── skeletons.tsx     # Loading skeleton components
 │   │   ├── fonts.ts          # Google Fonts configuration
 │   │   ├── global.css        # Global styles with Tailwind
 │   │   ├── home.module.css   # CSS Modules for home page
@@ -144,6 +165,8 @@ nextjs-dashboard-course/
 - **Authentication**: NextAuth.js (configured)
 - **Icons**: Heroicons
 - **Security**: bcrypt for password hashing
+- **UI/UX**: React Suspense for streaming
+- **Loading States**: Custom skeleton components
 
 ## 🗄️ Database Schema
 
@@ -220,6 +243,26 @@ pnpm dev
 - Customer profile pictures and contact details
 - Formatted currency display
 
+## 🔄 Streaming & Loading States
+
+### Route-level Loading
+
+- **Dashboard Loading**: Full page skeleton (`loading.tsx`) for initial page load
+- **Fallback UI**: Comprehensive skeleton matching the dashboard layout
+
+### Component-level Streaming
+
+- **Cards Section**: `CardsSkeleton` with shimmer animation for metrics loading
+- **Revenue Chart**: `RevenueChartSkeleton` with placeholder chart structure
+- **Latest Invoices**: `LatestInvoicesSkeleton` with invoice list placeholders
+
+### Loading Features
+
+- **Shimmer Animation**: CSS-based loading animation for skeleton components
+- **Independent Loading**: Each dashboard section loads independently
+- **Progressive Enhancement**: Content appears as data becomes available
+- **Responsive Skeletons**: Loading states adapt to different screen sizes
+
 ## 📝 Development Notes
 
 - Using `--turbopack` flag for faster development builds
@@ -230,14 +273,24 @@ pnpm dev
 - Server-side data fetching with proper error handling
 - Parallel data fetching for improved performance
 - Environment variables for secure database configuration
+- React Suspense boundaries for optimal streaming
+- Skeleton components with shimmer effects for polished loading states
 
 ## 🔧 API Endpoints
 
 - `/seed`: Database seeding endpoint for initial data population
 - `/query`: Testing endpoint for database queries
 
+## 🎯 Performance Optimizations
+
+- **Streaming**: Progressive page rendering with React Suspense
+- **Parallel Loading**: Independent component loading for faster perceived performance
+- **Skeleton UI**: Immediate feedback while data loads
+- **Static Rendering**: Optimized rendering where appropriate
+- **Dynamic Rendering**: Real-time data updates for dashboard components
+
 ---
 
-**Next Steps**: Continue with Chapter 8 to implement static and dynamic rendering optimizations.
+**Next Steps**: Continue with Chapter 10 to implement partial prerendering for further performance improvements.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
