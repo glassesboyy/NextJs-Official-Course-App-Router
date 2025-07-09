@@ -103,12 +103,11 @@ async function seedRevenue() {
 
 export async function GET() {
   try {
-    const result = await sql.begin((sql) => [
-      seedUsers(),
-      seedCustomers(),
-      seedInvoices(),
-      seedRevenue(),
-    ]);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const result = await sql.begin(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      (sql) => [seedUsers(), seedCustomers(), seedInvoices(), seedRevenue()]
+    );
 
     return Response.json({ message: "Database seeded successfully" });
   } catch (error) {

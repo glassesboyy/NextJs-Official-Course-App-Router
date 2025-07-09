@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 12 of 16 completed**
+**Current Progress: Chapter 14 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -118,10 +118,38 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ Data binding for edit forms with existing invoice data
 - ✅ Optimistic UI updates with server-side validation
 
+#### Chapter 13: Handling Errors
+
+- ✅ Error boundaries implementation with React Error Boundary
+- ✅ Custom error page (`error.tsx`) for invoice routes
+- ✅ User-friendly error display with retry functionality
+- ✅ Error logging with `useEffect` for debugging
+- ✅ Graceful error handling for database operations
+- ✅ Error recovery mechanisms with reset functionality
+- ✅ Client-side error catching and reporting
+- ✅ Error state management with proper user feedback
+- ✅ `notFound()` implementation for missing resources
+- ✅ Custom 404 page (`not-found.tsx`) for invoice edit routes
+- ✅ Error UI consistency with application design
+- ✅ Error prevention through validation and proper error boundaries
+
+#### Chapter 14: Improving Accessibility
+
+- ✅ ARIA attributes implementation for form accessibility
+- ✅ `aria-describedby` attributes linking form fields to error messages
+- ✅ Proper form labeling with semantic HTML
+- ✅ Screen reader support for form validation errors
+- ✅ Keyboard navigation improvements
+- ✅ Focus management for form interactions
+- ✅ `aria-live` regions for dynamic content updates
+- ✅ `aria-atomic` attributes for complete message reading
+- ✅ Accessible error messaging with proper associations
+- ✅ Semantic HTML structure for better accessibility
+- ✅ Form validation error announcements
+- ✅ Enhanced user experience for assistive technologies
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 13: Handling Errors
-- Chapter 14: Improving Accessibility
 - Chapter 15: Adding Authentication
 - Chapter 16: Adding Metadata
 
@@ -154,6 +182,8 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **Server Actions**: Secure server-side data mutations
 - **Form Handling**: Advanced form processing with FormData API
 - **Cache Management**: Automatic cache revalidation after mutations
+- **Error Handling**: Comprehensive error boundaries and user-friendly error pages
+- **Accessibility**: WCAG-compliant forms with ARIA attributes and screen reader support
 
 ## 📁 Project Structure
 
@@ -443,6 +473,6 @@ pnpm dev
 
 ---
 
-**Next Steps**: Continue with Chapter 13 to implement comprehensive error handling and user feedback systems.
+**Next Steps**: Continue with Chapter 15 to implement comprehensive error handling and user feedback systems.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
