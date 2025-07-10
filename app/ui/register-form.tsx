@@ -20,14 +20,14 @@ export default function RegisterForm() {
 
   return (
     <form action={formAction} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-3 pt-6">
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Create your account.
+          Create Your Account.
         </h1>
         <div className="w-full">
           <div>
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="name"
             >
               Full Name
@@ -53,9 +53,9 @@ export default function RegisterForm() {
                 ))}
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-2">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="email"
             >
               Email
@@ -81,9 +81,9 @@ export default function RegisterForm() {
                 ))}
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-2">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="password"
             >
               Password
@@ -110,9 +110,9 @@ export default function RegisterForm() {
                 ))}
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-2">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="confirmPassword"
             >
               Confirm Password

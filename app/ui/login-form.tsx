@@ -9,7 +9,6 @@ import {
   ExclamationCircleIcon,
   KeyIcon,
 } from "@heroicons/react/24/outline";
-import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 
@@ -24,9 +23,9 @@ export default function LoginForm() {
 
   return (
     <form action={formAction} className="space-y-3">
-      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
+      <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-3 pt-6">
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
-          Please log in to continue.
+          Log in to Continue.
         </h1>
 
         {/* Success message from registration */}
@@ -39,7 +38,7 @@ export default function LoginForm() {
         <div className="w-full">
           <div>
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="email"
             >
               Email
@@ -56,9 +55,9 @@ export default function LoginForm() {
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-2">
             <label
-              className="mb-3 mt-5 block text-xs font-medium text-gray-900"
+              className="mb-1 mt-3 block text-xs font-medium text-gray-900"
               htmlFor="password"
             >
               Password
@@ -93,19 +92,6 @@ export default function LoginForm() {
               <p className="text-sm text-red-500">{errorMessage}</p>
             </>
           )}
-        </div>
-
-        {/* Registration link */}
-        <div className="mt-4 text-center">
-          <p className="text-sm text-gray-600">
-            Don&apos;t have an account?{" "}
-            <Link
-              href="/register"
-              className="text-blue-500 hover:text-blue-700 underline"
-            >
-              Register here
-            </Link>
-          </p>
         </div>
       </div>
     </form>
