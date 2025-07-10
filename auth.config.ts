@@ -21,15 +21,6 @@ export const authConfig = {
 
       return true;
     },
-    async redirect({ url, baseUrl }) {
-      // Handle relative URLs
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      // Handle same origin URLs
-      if (new URL(url).origin === baseUrl) return url;
-      // Default redirect
-      return `${baseUrl}/dashboard`;
-    },
   },
-  trustHost: true, // Add this for production
   providers: [], // Untuk saat ini dikosongkan dulu
 } satisfies NextAuthConfig;
