@@ -4,7 +4,7 @@ This is a dashboard application built following the [Next.js App Router Course](
 
 ## 📚 Course Progress
 
-**Current Progress: Chapter 14 of 16 completed**
+**Current Progress: Chapter 15 of 16 completed**
 
 ### ✅ Completed Chapters:
 
@@ -148,9 +148,31 @@ This is a dashboard application built following the [Next.js App Router Course](
 - ✅ Form validation error announcements
 - ✅ Enhanced user experience for assistive technologies
 
+#### Chapter 15: Adding Authentication
+
+- ✅ NextAuth.js v5 (beta) integration with Credentials provider
+- ✅ Authentication configuration with `auth.config.ts`
+- ✅ Middleware implementation for route protection
+- ✅ User login functionality with email/password authentication
+- ✅ User registration system with account creation
+- ✅ Password hashing with bcrypt (12 rounds) for enhanced security
+- ✅ Zod schema validation for authentication forms
+- ✅ Email uniqueness validation during registration
+- ✅ Password confirmation validation with custom refine logic
+- ✅ User session management with NextAuth.js
+- ✅ Protected dashboard routes with automatic redirects
+- ✅ Sign-out functionality with secure session termination
+- ✅ Authentication error handling with user-friendly messages
+- ✅ Success notifications for registration completion
+- ✅ Callback URL handling for post-authentication redirects
+- ✅ Auth route grouping with `(auth)` folder structure
+- ✅ Form loading states during authentication processes
+- ✅ Cross-page navigation between login and register forms
+- ✅ ARIA accessibility for authentication forms
+- ✅ Database integration for user management operations
+
 ### 🔄 Upcoming Chapters:
 
-- Chapter 15: Adding Authentication
 - Chapter 16: Adding Metadata
 
 ## 🚀 Current Features
@@ -184,12 +206,24 @@ This is a dashboard application built following the [Next.js App Router Course](
 - **Cache Management**: Automatic cache revalidation after mutations
 - **Error Handling**: Comprehensive error boundaries and user-friendly error pages
 - **Accessibility**: WCAG-compliant forms with ARIA attributes and screen reader support
+- **User Authentication**: Complete login and registration system with NextAuth.js
+- **Password Security**: bcrypt hashing for secure password storage
+- **User Registration**: New user account creation with validation
+- **Session Management**: Secure session handling with NextAuth.js
+- **Route Protection**: Middleware-based authentication for dashboard access
+- **Form Validation**: Comprehensive validation for authentication forms
+- **Error Handling**: User-friendly error messages and success notifications
 
 ## 📁 Project Structure
 
 ```
 nextjs-dashboard-course/
 ├── app/
+│   ├── (auth)/                # Authentication route group
+│   │   ├── login/
+│   │   │   └── page.tsx      # Login page with form
+│   │   └── register/
+│   │       └── page.tsx      # Registration page with form
 │   ├── dashboard/
 │   │   ├── (overview)/
 │   │   │   ├── page.tsx      # Dashboard home with streaming
@@ -205,7 +239,7 @@ nextjs-dashboard-course/
 │   │   └── customers/
 │   │       └── page.tsx      # Customers page
 │   ├── lib/
-│   │   ├── actions.ts        # Server actions for data mutations
+│   │   ├── actions.ts        # Server actions with auth functions
 │   │   ├── data.ts           # Database queries with search & pagination
 │   │   ├── definitions.ts    # TypeScript type definitions
 │   │   ├── utils.ts          # Utility functions including pagination
@@ -216,7 +250,7 @@ nextjs-dashboard-course/
 │   │   └── route.ts          # Query testing API endpoint
 │   ├── ui/
 │   │   ├── dashboard/
-│   │   │   ├── sidenav.tsx   # Sidebar navigation component
+│   │   │   ├── sidenav.tsx   # Sidebar with sign-out functionality
 │   │   │   ├── nav-links.tsx # Navigation links component
 │   │   │   ├── cards.tsx     # Dashboard cards with metrics
 │   │   │   ├── revenue-chart.tsx # Revenue visualization chart
@@ -228,6 +262,8 @@ nextjs-dashboard-course/
 │   │   │   ├── breadcrumbs.tsx # Navigation breadcrumbs
 │   │   │   ├── pagination.tsx  # Pagination component with navigation
 │   │   │   └── table.tsx       # Invoices table component
+│   │   ├── login-form.tsx    # Login form with validation
+│   │   ├── register-form.tsx # Registration form with validation
 │   │   ├── search.tsx        # Search component with debounced input
 │   │   ├── skeletons.tsx     # Loading skeleton components
 │   │   ├── button.tsx        # Reusable button component
@@ -237,9 +273,9 @@ nextjs-dashboard-course/
 │   │   └── acme-logo.tsx     # Logo component
 │   ├── layout.tsx            # Root layout
 │   └── page.tsx              # Home page
-├── public/
-│   ├── hero-desktop.png      # Desktop hero image
-│   └── hero-mobile.png       # Mobile hero image
+├── auth.ts                   # NextAuth configuration
+├── auth.config.ts            # Auth configuration and callbacks
+├── middleware.ts             # Route protection middleware
 ├── next.config.ts            # Next.js configuration with PPR
 ├── .env.example              # Environment variables template
 └── package.json
@@ -248,15 +284,15 @@ nextjs-dashboard-course/
 ## 🛠️ Tech Stack
 
 - **Framework**: Next.js (App Router with PPR)
+- **Authentication**: NextAuth.js v5 (beta) with Credentials provider
+- **Password Hashing**: bcrypt for secure password storage
+- **Validation**: Zod for schema validation and form validation
 - **Styling**: Tailwind CSS
 - **Typography**: Google Fonts (Inter, Lusitana)
 - **Language**: TypeScript
 - **Database**: PostgreSQL (Vercel-hosted)
 - **Database Client**: postgres (node-postgres)
-- **Authentication**: NextAuth.js (configured)
 - **Icons**: Heroicons
-- **Security**: bcrypt for password hashing
-- **Validation**: Zod for schema validation
 - **UI/UX**: React Suspense for streaming
 - **Loading States**: Custom skeleton components
 - **Search**: use-debounce for optimized search input
@@ -267,7 +303,7 @@ nextjs-dashboard-course/
 
 ### Tables:
 
-- **users**: User authentication with UUID, name, email, hashed password
+- **users**: User authentication with UUID, name, email, hashed password (bcrypt)
 - **customers**: Customer profiles with contact information and avatars
 - **invoices**: Invoice records with amounts, status, and dates
 - **revenue**: Monthly revenue data for chart visualization
@@ -282,6 +318,9 @@ nextjs-dashboard-course/
 - **Pagination Support**: LIMIT and OFFSET for efficient data retrieval
 - **CRUD Operations**: Full Create, Read, Update, Delete support for invoices
 - **Data Integrity**: Proper foreign key constraints and validation
+- **User Authentication**: Secure user storage with hashed passwords
+- **Email Uniqueness**: Database constraints for unique email addresses
+- **Account Management**: Complete user registration and login functionality
 
 ## 🚀 Getting Started
 
@@ -299,10 +338,10 @@ pnpm install
 cp .env.example .env.local
 ```
 
-Fill in your database connection details:
+Fill in your database connection details and authentication secrets:
 
 - `POSTGRES_URL`: Your PostgreSQL connection string
-- `AUTH_SECRET`: Random secret for authentication
+- `AUTH_SECRET`: Random secret for NextAuth.js session encryption
 - Other database-specific variables
 
 3. Seed the database (first time only):
@@ -321,158 +360,144 @@ pnpm dev
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 📊 Dashboard Features
+6. **Authentication**:
+   - Register a new account at `/register`
+   - Login with your credentials at `/login`
+   - Access the protected dashboard at `/dashboard`
 
-### Cards Section
+## 🔐 Authentication System
 
-- **Total Collected**: Sum of all paid invoices
-- **Total Pending**: Sum of all pending invoices
-- **Total Invoices**: Count of all invoices
-- **Total Customers**: Count of all customers
+### NextAuth.js Configuration
 
-### Revenue Chart
+- **Version**: NextAuth.js v5 (beta.29) with modern App Router support
+- **Provider**: Credentials provider for email/password authentication
+- **Session Strategy**: JWT-based sessions with secure encryption
+- **Database Integration**: PostgreSQL for user storage and management
 
-- Monthly revenue visualization for the last 12 months
-- Dynamic bar chart with responsive design
-- Real-time data from database
+### Authentication Flow
 
-### Latest Invoices
+1. **Registration Process**:
 
-- 5 most recent invoices with customer information
-- Customer profile pictures and contact details
-- Formatted currency display
+   - User fills out registration form with name, email, password, and confirmation
+   - Client-side validation with Zod schema
+   - Server-side email uniqueness check
+   - Password hashing with bcrypt (12 rounds)
+   - User account creation in database
+   - Redirect to login with success message
 
-### Invoices Management
+2. **Login Process**:
 
-- **Search Functionality**: Real-time search across customer names, emails, amounts, dates, and status
-- **Pagination**: Navigate through large datasets with configurable page sizes
-- **Filtering**: Advanced filtering capabilities with URL persistence
-- **Responsive Table**: Mobile-friendly invoice display with status indicators
-- **CRUD Operations**: Create, Edit, and Delete invoices with full validation
-- **Action Buttons**: Intuitive interface for invoice management
+   - User enters email and password credentials
+   - Server-side validation and user lookup
+   - Password verification with bcrypt comparison
+   - Session creation with NextAuth.js
+   - Redirect to dashboard or callback URL
 
-## 🔧 Invoice CRUD Operations
-
-### Create Invoice
-
-- **Form Validation**: Zod schema validation for all form inputs
-- **Customer Selection**: Dropdown with all available customers
-- **Amount Input**: Numeric input with proper formatting
-- **Status Selection**: Radio buttons for pending/paid status
-- **Server Action**: Secure server-side form processing
-- **Data Conversion**: Automatic conversion from dollars to cents
-- **Cache Revalidation**: Automatic UI updates after creation
-- **Navigation**: Redirect to invoices list after successful creation
-
-### Edit Invoice
-
-- **Pre-populated Form**: Forms automatically filled with existing invoice data
-- **Dynamic Routing**: URL-based invoice selection with `[id]` parameter
-- **Data Binding**: Proper form field binding with `defaultValue`
-- **Validation**: Same validation rules as create form
-- **Update Logic**: Efficient database updates with prepared statements
-- **Error Handling**: Comprehensive error handling for edge cases
-
-### Delete Invoice
-
-- **Confirmation UI**: Clear delete button with proper styling
-- **Server Action**: Secure deletion with proper authorization
-- **Cascade Handling**: Proper handling of related data
-- **Optimistic Updates**: Immediate UI feedback with server validation
-- **Error Recovery**: Graceful handling of deletion errors
-
-## 🛡️ Data Validation & Security
-
-### Zod Schema Validation
-
-- **Type Safety**: TypeScript integration with runtime validation
-- **Field Validation**: Customer ID, amount, and status validation
-- **Data Coercion**: Automatic string to number conversion for amounts
-- **Error Messages**: Clear validation error messages
-- **Server-side Validation**: All validation performed on server
+3. **Route Protection**:
+   - Middleware checks authentication status
+   - Automatic redirects for unauthenticated users
+   - Dashboard access requires valid session
+   - Protected routes return users to login page
 
 ### Security Features
 
-- **Server Actions**: All mutations performed server-side
-- **Input Sanitization**: Proper sanitization of all form inputs
+- **Password Hashing**: bcrypt with 12 salt rounds for enhanced security
+- **Session Management**: Secure JWT tokens with configurable expiration
+- **CSRF Protection**: Built-in CSRF protection with NextAuth.js
+- **Input Validation**: Comprehensive validation with Zod schemas
 - **SQL Injection Prevention**: Parameterized queries with postgres library
-- **CSRF Protection**: Built-in CSRF protection with Next.js
-- **Data Validation**: Comprehensive validation before database operations
+- **Email Validation**: Email format validation and uniqueness constraints
 
-## 🔄 Server Actions Implementation
+## 🎨 Authentication UI Components
 
-### Action Functions
+### Login Form (`login-form.tsx`)
 
-- **createInvoice**: Handle new invoice creation with validation
-- **updateInvoice**: Handle invoice updates with ID binding
-- **deleteInvoice**: Handle invoice deletion with confirmation
-- **Form Binding**: Automatic form data extraction and processing
-- **Error Handling**: Comprehensive error handling with user feedback
+- **Features**: Email/password inputs with validation
+- **State Management**: useActionState for form handling
+- **Loading States**: Visual feedback during authentication
+- **Error Handling**: User-friendly error messages
+- **Success Messages**: Registration success notifications
+- **Navigation**: Links to registration page
+- **Accessibility**: ARIA labels and proper form structure
 
-### Performance Optimizations
+### Registration Form (`register-form.tsx`)
 
-- **Prepared Statements**: Efficient database queries with parameter binding
-- **Cache Revalidation**: Selective cache invalidation with `revalidatePath`
-- **Optimistic Updates**: Immediate UI updates with server validation
-- **Batch Operations**: Efficient handling of multiple operations
+- **Features**: Name, email, password, and confirmation fields
+- **Validation**: Real-time validation with error display
+- **Password Confirmation**: Custom validation for matching passwords
+- **Form State**: Loading states and error handling
+- **User Feedback**: Clear error messages and success notifications
+- **Navigation**: Links to login page
+- **Accessibility**: Screen reader support with ARIA attributes
 
-## 🎨 UI/UX Enhancements
+### Navigation Integration
 
-### Form Components
+- **Sidebar**: Sign-out button with secure session termination
+- **Protected Routes**: Automatic redirects for unauthorized access
+- **User Experience**: Seamless navigation between auth pages
+- **State Persistence**: Maintains intended destination after login
 
-- **Responsive Design**: Mobile-first form layouts
-- **Accessibility**: Proper labels and ARIA attributes
-- **Visual Feedback**: Loading states and success/error messages
-- **Intuitive Navigation**: Clear breadcrumbs and navigation paths
-- **Consistent Styling**: Uniform styling across all forms
+## 🔧 Server Actions for Authentication
 
-### Action Buttons
+### Authentication Actions (`actions.ts`)
 
-- **Icon Integration**: Heroicons for consistent button styling
-- **Hover States**: Interactive feedback on button interactions
-- **Disabled States**: Proper handling of disabled button states
-- **Loading States**: Visual feedback during form submission
+- **authenticate**: Handles login with NextAuth.js signIn
+- **registerUser**: Handles user registration with validation
+- **Error Handling**: Comprehensive error catching and user feedback
+- **Database Operations**: User creation and email uniqueness checks
+- **Password Security**: bcrypt hashing before database storage
 
-## 🚀 Performance Optimizations
+### Validation Schemas
 
-### Data Mutations
+- **LoginSchema**: Email and password validation
+- **RegisterSchema**: Name, email, password, and confirmation validation
+- **Password Rules**: Minimum 6 characters with confirmation matching
+- **Email Validation**: Format validation and uniqueness constraints
 
-- **Server Actions**: Efficient server-side processing
-- **Cache Management**: Intelligent cache invalidation
-- **Optimistic Updates**: Immediate UI feedback
-- **Error Recovery**: Graceful handling of failed operations
+## 🛡️ Middleware Protection
 
-### Form Performance
+### Route Protection (`middleware.ts`)
 
-- **Debounced Validation**: Efficient form validation
-- **Lazy Loading**: Progressive form component loading
-- **Memory Management**: Proper cleanup of form state
-- **Network Efficiency**: Minimal data transfer for mutations
+- **Pattern Matching**: Protects all routes except public assets
+- **Authentication Check**: Verifies user session status
+- **Automatic Redirects**: Sends unauthenticated users to login
+- **Dashboard Access**: Requires valid authentication session
+- **Public Routes**: Allows access to login and registration pages
 
-## 📝 Development Notes
+### Authorization Logic
 
-- Server Actions with `"use server"` directive for secure mutations
+- **Dashboard Protection**: All `/dashboard/*` routes require authentication
+- **Auth Page Handling**: Redirects authenticated users away from login/register
+- **Callback URLs**: Maintains intended destination after authentication
+- **Error Handling**: Graceful handling of authentication failures
+
+## 🎯 Authentication Performance
+
+- **Password Hashing**: Optimized bcrypt with 12 rounds for security/performance balance
+- **Session Management**: Efficient JWT-based sessions with NextAuth.js
+- **Database Queries**: Optimized user lookup and creation operations
+- **Form Validation**: Client-side validation for immediate feedback
+- **Error Handling**: Comprehensive error recovery with user-friendly messages
+- **Loading States**: Visual feedback during authentication processes
+
+## 📝 Authentication Development Notes
+
+- NextAuth.js v5 beta configuration with Credentials provider
+- bcrypt password hashing with 12 salt rounds for enhanced security
 - Zod schema validation for type-safe form processing
-- FormData API for efficient form handling
-- Automatic cache revalidation with `revalidatePath`
-- Programmatic navigation with `redirect`
-- Currency conversion handling (dollars to cents)
-- Proper error handling and user feedback
-- TypeScript integration with comprehensive type definitions
-- Responsive form layouts with Tailwind CSS
-- Accessibility best practices in form design
-
-## 🎯 Performance Metrics
-
-- **Server Actions**: Secure and efficient data mutations
-- **Form Validation**: Real-time validation with Zod schemas
-- **Cache Efficiency**: Automatic cache revalidation after mutations
-- **Database Performance**: Optimized queries with proper indexing
-- **UI Responsiveness**: Immediate feedback with optimistic updates
-- **Error Handling**: Comprehensive error recovery mechanisms
+- FormData API for efficient form handling in Server Actions
+- Email uniqueness validation with database constraints
+- Password confirmation validation with custom Zod refine logic
+- Middleware-based route protection with automatic redirects
+- User-friendly error messages and success notifications
+- ARIA accessibility best practices in authentication forms
+- Cross-page navigation between login and registration
+- Database integration for complete user management
+- Session management with secure JWT tokens
+- Callback URL handling for post-authentication redirects
 
 ---
 
-**Next Steps**: Continue with Chapter 15 to implement comprehensive error handling and user feedback systems.
+**Next Steps**: Continue with Chapter 16 to add comprehensive metadata and SEO optimization to complete the dashboard application.
 
 For more information about this course, visit the [Next.js Learn Course](https://nextjs.org/learn) on the official Next.js website.
