@@ -1,4 +1,4 @@
-# Next.js App Router Course - Dashboard Application
+# Acme Dashboard - Dashboard by Next.js App Router Course
 
 This is a dashboard application built following the [Next.js App Router Course](https://nextjs.org/learn) from the official Next.js documentation.
 
