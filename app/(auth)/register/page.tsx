@@ -1,7 +1,13 @@
 import AcmeLogo from "@/app/ui/acme-logo";
 import RegisterForm from "@/app/ui/register-form";
+import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+  title: "Register",
+  description: "Create a new account",
+};
 
 export default function RegisterPage() {
   return (
