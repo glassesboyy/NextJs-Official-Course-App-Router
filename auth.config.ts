@@ -22,12 +22,14 @@ export const authConfig = {
       return true;
     },
     async redirect({ url, baseUrl }) {
-      // Allows relative callback URLs
+      // Handle relative URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`;
-      // Allows callback URLs on the same origin
-      else if (new URL(url).origin === baseUrl) return url;
-      return baseUrl + "/dashboard";
+      // Handle same origin URLs
+      if (new URL(url).origin === baseUrl) return url;
+      // Default redirect
+      return `${baseUrl}/dashboard`;
     },
   },
+  trustHost: true, // Add this for production
   providers: [], // Untuk saat ini dikosongkan dulu
 } satisfies NextAuthConfig;
